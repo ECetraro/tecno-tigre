@@ -33,7 +33,7 @@ const blogPosts = [
         excerpt: "Aprende a exprimir el potencial de la terminal Termux en tu dispositivo Android para programar scripts en Bash o Python que te ahorren tiempo a diario.",
         category: "hacks",
         categoryName: "Hacks",
-        date: "2026-05-21",
+        date: "2026-05-22",
         image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
         author: "CyberTigre",
         readingTime: "8 min",
@@ -190,7 +190,12 @@ termux-toast "Respaldo diario de fotos completado con éxito"</code></pre>
             
             <h3>Tu aliado cotidiano</h3>
             <p>Ideal para cuando el móvil se esconde en la mochila, entre los cojines o en cualquier rincón de la casa.</p>
-            <a href='https://github.com/ECetraro/tecno-tigre/releases/download/Find_My_Phone/Find_My_Phone_1.7.3.52.apk' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_1.png' alt='DESCARGAR' /></a>
+                    <!-- Botón de descarga -->
+        <a href="https://github.com/ECetraro/tecno-tigre/releases/download/Find_My_Phone/Find_My_Phone_1.7.3.52.apk" 
+           class="btn-download" 
+           style="display:inline-block;padding:10px 20px;background:#4CAF50;color:#fff;border-radius:5px;text-decoration:none;">
+           📥 Descargar APK
+        </a>
 
         `
     }
