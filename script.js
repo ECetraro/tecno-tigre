@@ -86,7 +86,7 @@ termux-toast "Respaldo diario de fotos completado con éxito"</code></pre>
     },
     {
         id: 4,
-        title: "Top 5 Alternativas de Código Abierto a YouTube en Android",
+        title: "Localizá tu celular con solo silbar",
         excerpt: "Analizamos los mejores reproductores y clientes alternativos para Android que te permiten ver tus vídeos preferidos sin anuncios, con reproducción en segundo plano y sin rastreadores.",
         category: "aplicaciones",
         categoryName: "Aplicaciones",
@@ -166,6 +166,31 @@ termux-toast "Respaldo diario de fotos completado con éxito"</code></pre>
             
             <h3>Configuración del Navegador</h3>
             <p>Una vez activo el túnel, simplemente ve a los ajustes de red de tu navegador preferido (ej: Firefox) y configura un Proxy manual apuntando a <b>127.0.0.1</b> con puerto <b>8080</b> del tipo <b>SOCKS v5</b>.</p>
+        `
+    },
+        {
+        id: 7,
+        title: "Encuentra tu celular con solo silbar",
+        excerpt: "La app detecta tu silbido y activa una alarma sonora para ubicar el teléfono en segundos.",
+        category: "android",
+        categoryName: "Android",
+        date: "2026-05-22",
+        image: "https://images.sftcdn.net/images/t_app-cover-s-16-9,f_auto/p/c302ecb8-22b1-4e18-894a-e1a4b3a98879/4137097748/find-my-phone-by-whistle-clap-screenshot",
+        author: "AndroidTigre",
+        readingTime: "10 min",
+        content: `
+            <p>Control de sensibilidad ajustable</p> 
+            <h3>Podés regular qué tan fácil o difícil es que el celular reconozca tu silbido, adaptándose a distintos ambientes..</h3>
+            
+            <h3>Ligera y eficiente.</h3>
+            <p>Optimizada para consumir poca batería y funcionar incluso con la pantalla apagada.</p>
+            
+            <h3>Interfaz simple y clara </h3>
+            <p>Botones directos para activar el buscador o detener la alarma, sin complicaciones.</p>
+            
+            <h3>Tu aliado cotidiano</h3>
+            <p>Ideal para cuando el móvil se esconde en la mochila, entre los cojines o en cualquier rincón de la casa.</p>
+
         `
     }
 ];
