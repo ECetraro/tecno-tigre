@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoTigre - Windows, Android, Hacks & Programas</title>
+    
+    <!-- Meta tags SEO -->
+    <meta name="description" content="Blog de tecnología especializado en la optimización de Windows, desarrollo en Android, hacks informáticos éticos, aplicaciones indispensables y programas esenciales de código abierto.">
+    <meta name="keywords" content="TecnoTigre, Windows, Android, Hacks, Aplicaciones, Programas, Optimización, Custom ROM, Termux">
+    <meta name="author" content="TecnoTigre">
+    
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Hojas de estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Orbes decorativos de neón -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <!-- Barra de navegación -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#inicio" class="logo">
+                <img src="images/LOGO_W.png" alt="TecnoTigre" class="logo-img">
+            </a>
+            
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="#blog" class="nav-link">Blog</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección de Bienvenida (Hero) -->
+        <section class="hero" id="inicio">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="hero-tagline">Acceso de root al conocimiento</span>
+                    <h1 class="hero-title">
+                        Explora el mundo de
+                        <span id="typewriter-text" class="text-gradient"></span>
+                    </h1>
+                    <p class="hero-desc">
+                        Tu portal definitivo para potenciar tu productividad informática. Aprende optimización extrema de Windows, exprime Android mediante terminales y descubre software de código abierto indispensable.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#blog" class="btn btn-primary">
+                            Explorar Artículos <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <a href="#contacto" class="btn btn-secondary">
+                            Escribir Mensaje <i class="far fa-paper-plane"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="cyber-circle">
+                        <i class="fas fa-laptop-code tech-icon-center"></i>
+                    </div>
+                    <div class="floating-element fe-1">
+                        <i class="fab fa-windows"></i>
+                        <span>win11_tweak.bat</span>
+                    </div>
+                    <div class="floating-element fe-2">
+                        <i class="fab fa-android"></i>
+                        <span>termux_setup.sh</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección del Blog (Artículos y Descargas) -->
+        <section class="section-padding" id="blog">
+            <div class="container">
+                <div class="blog-controls">
+                    <div class="controls-top">
+                        <div class="section-header">
+                            <span class="section-subtitle">ÚLTIMAS ENTRADAS</span>
+                            <h2 class="section-title">Publicaciones del Blog</h2>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" id="search-input" placeholder="Buscar tutorial o programa...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    <!-- Filtros por categoría generados dinámicamente -->
+                    <div class="filter-categories" id="filter-categories"></div>
+                </div>
+
+                <!-- Cuadrícula de tarjetas de artículos -->
+                <div class="blog-grid" id="blog-grid">
+                    <!-- Se rellena con JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section class="contact-section section-padding" id="contacto">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="section-header" style="margin-bottom: 1.5rem;">
+                            <span class="section-subtitle">CONTACTO</span>
+                            <h2 class="section-title">¿Tienes alguna duda?</h2>
+                        </div>
+                        <p class="contact-lead">
+                            ¿Necesitas ayuda con algún tutorial? ¿Tienes sugerencias para nuevas aplicaciones Android o hacks de Windows? Escríbenos y únete a la comunidad de TecnoTigre.
+                        </p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope-open"></i>
+                                </div>
+                                <div class="contact-item-text">
+                                    <h4>Correo de Contacto</h4>
+                                    <p>soporte@tecnotigre.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div class="contact-item-text">
+                                    <h4>Privacidad y Seguridad</h4>
+                                    <p>Tus datos están encriptados y no se comparten con terceros.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://github.com" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub de TecnoTigre">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://t.me" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram de TecnoTigre">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube de TecnoTigre">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter de TecnoTigre">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form id="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="form-name" class="form-label">Tu Nombre</label>
+                                <input type="text" id="form-name" class="form-input" placeholder="Ej. Juan Pérez" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email" class="form-label">Correo Electrónico</label>
+                                <input type="email" id="form-email" class="form-input" placeholder="Ej. juan@correo.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-subject" class="form-label">Asunto</label>
+                                <input type="text" id="form-subject" class="form-input" placeholder="Ej. Duda sobre Script Termux" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-message" class="form-label">Mensaje</label>
+                                <textarea id="form-message" class="form-input" placeholder="Escribe los detalles aquí..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                                Enviar Mensaje <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#inicio" class="logo">
+                        <img src="images/LOGO_W.png" alt="TecnoTigre" class="logo-img">
+                    </a>
+                    <p class="footer-desc">
+                        Espacio tecnológico dedicado al software libre, la optimización y personalización de sistemas operativos móviles y de escritorio.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Categorías</h4>
+                    <ul class="footer-links">
+                        <li><a href="#blog" class="footer-link" onclick="document.querySelector('[data-category=windows]').click()"><i class="fas fa-angle-right"></i> Windows</a></li>
+                        <li><a href="#blog" class="footer-link" onclick="document.querySelector('[data-category=android]').click()"><i class="fas fa-angle-right"></i> Android</a></li>
+                        <li><a href="#blog" class="footer-link" onclick="document.querySelector('[data-category=hacks]').click()"><i class="fas fa-angle-right"></i> Hacks</a></li>
+                        <li><a href="#blog" class="footer-link" onclick="document.querySelector('[data-category=aplicaciones]').click()"><i class="fas fa-angle-right"></i> Aplicaciones</a></li>
+                        <li><a href="#blog" class="footer-link" onclick="document.querySelector('[data-category=programas]').click()"><i class="fas fa-angle-right"></i> Programas</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Enlaces</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio" class="footer-link"><i class="fas fa-angle-right"></i> Inicio</a></li>
+                        <li><a href="#blog" class="footer-link"><i class="fas fa-angle-right"></i> Blog de Artículos</a></li>
+                        <li><a href="#contacto" class="footer-link"><i class="fas fa-angle-right"></i> Contacto Directo</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copy">
+                    &copy; 2026 TecnoTigre. Creado con <i class="fas fa-heart" style="color: var(--accent);"></i> para entusiastas de la informática.
+                </p>
+                <div class="footer-meta">
+                    sys.status: <span style="color: var(--primary);">ONLINE</span> // build: v2.1.0
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Ventana Modal de Lectura de Artículos -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-container" id="modal-container">
+            <button class="modal-close" id="modal-close" aria-label="Cerrar ventana emergente">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body-container">
+                <!-- Se rellena con JS al abrir un post -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cargar script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
