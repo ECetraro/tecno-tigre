@@ -6,7 +6,7 @@ const blogPosts = [
         excerpt: "Descubre las herramientas esenciales de software libre y código abierto que no pueden faltar en tu instalación limpia de Windows para optimizar tu productividad y seguridad.",
         category: "programas",
         categoryName: "Programas",
-        date: "2026-05-22",
+        date: "2026-05-21",
         image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80",
         author: "TigreTech",
         readingTime: "5 min",
@@ -190,6 +190,7 @@ termux-toast "Respaldo diario de fotos completado con éxito"</code></pre>
             
             <h3>Tu aliado cotidiano</h3>
             <p>Ideal para cuando el móvil se esconde en la mochila, entre los cojines o en cualquier rincón de la casa.</p>
+            <a href='https://github.com/ECetraro/tecno-tigre/releases/download/Find_My_Phone/Find_My_Phone_1.7.3.52.apk' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_1.png' alt='DESCARGAR' /></a>
 
         `
     }
