@@ -1,23 +1,17 @@
 // STATE MANAGEMENT
 
-// Load posts from server if available, otherwise use initialPosts from data.js
-async function getPosts() {
-    try {
-        const response = await fetch('api.php');
-        const data = await response.json();
-
-        // Si hay datos en el servidor, usarlos. Si no, usar los iniciales.
-        if (data && data.length > 0) {
-            return data;
-        }
-        return typeof initialPosts !== 'undefined' ? initialPosts : [];
-    } catch (e) {
-        console.error("Error cargando noticias desde el servidor:", e);
-        return typeof initialPosts !== 'undefined' ? initialPosts : [];
+// Load posts from localStorage if available, otherwise use initialPosts from data.js
+function getPosts() {
+    const saved = localStorage.getItem('tecnotigre_posts');
+    if (!saved) {
+        // First time initialization: Save initial posts to localStorage
+        localStorage.setItem('tecnotigre_posts', JSON.stringify(initialPosts));
+        return initialPosts;
     }
+    return JSON.parse(saved);
 }
 
-let blogPosts = [];
+let blogPosts = getPosts();
 let activeCategory = 'todos';
 let searchQuery = '';
 
@@ -36,8 +30,7 @@ const typingElement = document.getElementById('typewriter-text');
 const navLinks = document.querySelectorAll('.nav-link');
 
 // INITIALIZATION
-document.addEventListener('DOMContentLoaded', async () => {
-    blogPosts = await getPosts(); // Carga de datos asíncrona
+document.addEventListener('DOMContentLoaded', () => {
     renderFilterButtons();
     renderPosts();
     initTypewriter();
@@ -48,8 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Refresh posts when returning to this tab
-window.addEventListener('focus', async () => {
-    blogPosts = await getPosts();
+window.addEventListener('focus', () => {
     renderPosts();
 });
 
@@ -116,7 +108,6 @@ function initTypewriter() {
     let isDeleting = false;
     
     function type() {
-        if (!typingElement) return;
         const currentWord = words[wordIndex];
         if (isDeleting) {
             typingElement.textContent = currentWord.substring(0, charIndex - 1);
@@ -145,7 +136,6 @@ function initTypewriter() {
 
 // RENDER FILTER PILLS
 function renderFilterButtons() {
-    if (!filterContainer) return;
     const categories = ['todos', 'windows', 'android', 'hacks', 'aplicaciones', 'programas'];
     filterContainer.innerHTML = '';
     
@@ -171,27 +161,26 @@ function renderFilterButtons() {
 }
 
 // SEARCH BEHAVIOR
-if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase().trim();
-        renderPosts();
-    });
-}
+searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value.toLowerCase().trim();
+    renderPosts();
+});
 
 // SORT & RENDER POSTS
 function renderPosts() {
-    if (!blogGrid) return;
-
     // Add temporary fade effect
     blogGrid.classList.add('loading');
     
     setTimeout(() => {
+        // Refresh data from localStorage in case it changed in admin tab
+        blogPosts = getPosts();
+
         // Filter
         let filtered = blogPosts.filter(post => {
             const matchesCategory = activeCategory === 'todos' || post.category === activeCategory;
             const matchesSearch = post.title.toLowerCase().includes(searchQuery) || 
                                   post.excerpt.toLowerCase().includes(searchQuery) ||
-                                  (post.categoryName && post.categoryName.toLowerCase().includes(searchQuery));
+                                  post.categoryName.toLowerCase().includes(searchQuery);
             return matchesCategory && matchesSearch;
         });
 
@@ -223,7 +212,7 @@ function renderPosts() {
                     <div class="card-img-wrapper">
                         <img src="${post.image}" alt="${post.title}" class="card-img" loading="lazy">
                         <div class="card-overlay"></div>
-                        <span class="badge ${badgeClass} card-badge">${post.categoryName || post.category}</span>
+                        <span class="badge ${badgeClass} card-badge">${post.categoryName}</span>
                         <span class="card-date"><i class="far fa-calendar"></i> ${formatDate(post.date)}</span>
                     </div>
                     <div class="card-content">
@@ -231,8 +220,8 @@ function renderPosts() {
                         <p class="card-excerpt">${post.excerpt}</p>
                         <div class="card-footer">
                             <div class="card-author">
-                                <div class="author-avatar">${(post.author || "TT").substring(0, 2).toUpperCase()}</div>
-                                <span class="author-name">${post.author || "TecnoTigre"}</span>
+                                <div class="author-avatar">${post.author.substring(0, 2).toUpperCase()}</div>
+                                <span class="author-name">${post.author}</span>
                             </div>
                             <button class="read-more-btn" onclick="openPostModal(${post.id})">
                                 Leer más <i class="fas fa-arrow-right"></i>
@@ -256,7 +245,6 @@ function formatDate(dateStr) {
 
 // DETAILED MODAL CONTROLS
 function initModal() {
-    if (!modalCloseBtn) return;
     modalCloseBtn.addEventListener('click', closePostModal);
     
     // Close on overlay click
@@ -288,10 +276,10 @@ window.openPostModal = function(postId) {
         <div class="modal-content-wrapper">
             <div class="modal-meta">
                 <div class="modal-meta-left">
-                    <span class="badge ${badgeClass}">${post.categoryName || post.category}</span>
+                    <span class="badge ${badgeClass}">${post.categoryName}</span>
                     <span class="modal-meta-item"><i class="far fa-calendar"></i> ${formatDate(post.date)}</span>
                 </div>
-                <span class="modal-meta-item"><i class="far fa-clock"></i> Lectura: ${post.readingTime || '5 min'}</span>
+                <span class="modal-meta-item"><i class="far fa-clock"></i> Lectura: ${post.readingTime}</span>
             </div>
             <h1 class="modal-title">${post.title}</h1>
             <div class="modal-body">
@@ -304,6 +292,7 @@ window.openPostModal = function(postId) {
     if (containerContent) {
         containerContent.innerHTML = modalHTML;
     } else {
+        // Create container inside modalContainer if it does not exist
         const contentDiv = document.createElement('div');
         contentDiv.classList.add('modal-body-container');
         contentDiv.innerHTML = modalHTML;
@@ -366,12 +355,14 @@ function validateEmail(email) {
 function showToast(message, type = 'info') {
     let toastContainer = document.querySelector('.toast-container');
     
+    // Create container if not exists
     if (!toastContainer) {
         toastContainer = document.createElement('div');
         toastContainer.classList.add('toast-container');
         document.body.appendChild(toastContainer);
     }
     
+    // Create Toast
     const toast = document.createElement('div');
     toast.classList.add('toast');
     if (type === 'success') toast.classList.add('toast-success');
@@ -389,10 +380,12 @@ function showToast(message, type = 'info') {
     
     toastContainer.appendChild(toast);
     
+    // Trigger animation
     setTimeout(() => {
         toast.classList.add('show');
     }, 10);
     
+    // Auto remove toast
     setTimeout(() => {
         toast.classList.remove('show');
         setTimeout(() => {
