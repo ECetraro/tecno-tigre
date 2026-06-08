@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - TecnoTigre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --admin-bg: #0f172a;
+            --admin-card: #1e293b;
+            --admin-accent: #38bdf8;
+        }
+
+        body.admin-body {
+            background-color: var(--admin-bg);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Login Styles */
+        #login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .login-card {
+            background: var(--admin-card);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .login-card h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--admin-accent);
+        }
+
+        /* Dashboard Styles */
+        #admin-dashboard {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background: var(--admin-card);
+            padding: 2rem;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            position: fixed;
+            height: 100vh;
+        }
+
+        .admin-main {
+            margin-left: 250px;
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--admin-accent);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-link {
+            color: #94a3b8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--admin-accent);
+        }
+
+        /* Form Styles */
+        .admin-card {
+            background: var(--admin-card);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .admin-input, .admin-textarea, .admin-select {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: white;
+            padding: 0.8rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+        }
+
+        .admin-textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .btn-admin {
+            background: var(--admin-accent);
+            color: #0f172a;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-admin:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Table Styles */
+        .posts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .posts-table th, .posts-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .posts-table th {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-edit { color: #fbbf24; cursor: pointer; }
+        .btn-delete { color: #f87171; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .admin-sidebar { width: 70px; padding: 1rem; }
+            .sidebar-text { display: none; }
+            .admin-main { margin-left: 70px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <!-- LOGIN SCREEN -->
+    <div id="login-container">
+        <div class="login-card">
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
+            <form id="login-form">
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label>Usuario</label>
+                    <input type="text" id="username" class="admin-input" required placeholder="admin">
+                </div>
+                <div class="form-group" style="margin-bottom: 2rem;">
+                    <label>Contraseña</label>
+                    <input type="password" id="password" class="admin-input" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-admin" style="width: 100%;">Ingresar</button>
+            </form>
+            <p id="login-error" style="color: #f87171; text-align: center; margin-top: 1rem; display: none;">Credenciales incorrectas</p>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SCREEN -->
+    <div id="admin-dashboard">
+        <aside class="admin-sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-tiger"></i> <span class="sidebar-text">TecnoTigre</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="sidebar-link active" id="menu-posts"><i class="fas fa-newspaper"></i> <span class="sidebar-text">Noticias</span></a></li>
+                <li><a href="#" class="sidebar-link" id="menu-add"><i class="fas fa-plus-circle"></i> <span class="sidebar-text">Nueva Post</span></a></li>
+                <li><a href="index.html" class="sidebar-link"><i class="fas fa-external-link-alt"></i> <span class="sidebar-text">Ver Web</span></a></li>
+                <li><a href="#" class="sidebar-link" id="logout-btn" style="margin-top: 2rem; color: #f87171;"><i class="fas fa-sign-out-alt"></i> <span class="sidebar-text">Salir</span></a></li>
+            </ul>
+        </aside>
+
+        <main class="admin-main">
+            <!-- List Section -->
+            <section id="section-list">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h1>Gestión de Noticias</h1>
+                    <button class="btn-admin" onclick="showSection('add')"><i class="fas fa-plus"></i> Crear Nueva</button>
+                </div>
+
+                <div class="admin-card">
+                    <table class="posts-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Categoría</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-posts-list">
+                            <!-- JS populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Add/Edit Section -->
+            <section id="section-form" style="display: none;">
+                <h1 id="form-title">Agregar Nueva Noticia</h1>
+                <div class="admin-card">
+                    <form id="post-form">
+                        <input type="hidden" id="post-id">
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label>Título de la Noticia</label>
+                            <input type="text" id="post-title" class="admin-input" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Categoría</label>
+                                <select id="post-category" class="admin-select">
+                                    <option value="windows">Windows</option>
+                                    <option value="android">Android</option>
+                                    <option value="hacks">Hacks</option>
+                                    <option value="aplicaciones">Aplicaciones</option>
+                                    <option value="programas">Programas</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>URL de Imagen (Unsplash o local)</label>
+                                <input type="text" id="post-image" class="admin-input" placeholder="https://...">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Autor</label>
+                                <input type="text" id="post-author" class="admin-input" value="AdminTigre">
+                            </div>
+                            <div class="form-group">
+                                <label>Tiempo de lectura (ej. 5 min)</label>
+                                <input type="text" id="post-time" class="admin-input" value="5 min">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label>Extracto (Resumen corto)</label>
+                            <textarea id="post-excerpt" class="admin-textarea" style="height: 80px;"></textarea>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label>Contenido (HTML soportado)</label>
+                            <textarea id="post-content" class="admin-textarea"></textarea>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="submit" class="btn-admin" id="save-btn">Guardar Publicación</button>
+                            <button type="button" class="btn-admin" style="background: #334155; color: white;" onclick="showSection('list')">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
